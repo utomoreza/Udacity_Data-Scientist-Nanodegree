@@ -31,7 +31,7 @@ For this project, I explore data science survey by [Kaggle](https://www.kaggle.c
 - It is valuable and useful enough if you decide to master most skills in data science field as you will have more chance to earn more money than those who have general knowledge only.
 
 ## Description of Files
-The main file is [`main.ipynb`](./main.ipynb) notebook. The [`question.txt`](./question.txt) file lists all questions I'd like to answer in the near future. The [`datasets`](./datasets) directory contains all datasets, even Kaggle surveys from before 2020. The [`assets`](./assets) directory consists of files needed for visualization in the notebook.
+The main file is [`main.ipynb`](./main.ipynb) notebook. The [`questions.txt`](./questions.txt) file lists all questions I'd like to answer in the near future. The [`datasets`](./datasets) directory contains all datasets, even Kaggle surveys from before 2020. The [`assets`](./assets) directory consists of files needed for visualization in the notebook.
 
 ## Findings
 The main story of this repo can be found on my Medium Blog post available [here](https://utomorezadwi.medium.com/how-much-do-you-know-to-enter-data-science-field-1df95baec9da). But, for the more elaborate findings, you could read the notebook.
