@@ -29,7 +29,7 @@ For this project, I explore data science survey by [Kaggle](https://www.kaggle.c
 The main file is `Project1.ipynb` notebook. The `question.txt` file lists all questions I'd like to answer in the near future. The `datasets` directory contains all datasets, even Kaggle surveys from before 2020. The `assets` directory consists of files needed for visualization in the notebook.
 
 ## Findings
-The main story of this repo can be found on my Medium Blog post available [here](https://medium.com/@stephanieirvine15/how-data-will-make-you-drink-wine-differently-c59d669831a1). But, for the more elaborate findings, you could read the notebook.
+The main story of this repo can be found on my Medium Blog post available [here](https://utomorezadwi.medium.com/how-much-do-you-know-to-enter-data-science-field-1df95baec9da). But, for the more elaborate findings, you could read the notebook.
 
 ## License
 MIT License
