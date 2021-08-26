@@ -1,0 +1,8 @@
+- seberapa prestis dan menjanjikan bidang data bagi seorang perempuan dibanding laki-laki
+- skills yang dibutuhkan untuk menjadi data scientist, data engineer, data analyst, ML engineer, dll (dibuat ke dalam bentuk radar plot)
+- apakah menjadi seorang full stack data scientist bisa dapat gaji lebih besar
+- proporsi roles bidang data untuk tiap jenis perusahaan
+- seberapa penting higher education untuk menjadi seorang data scientist
+- berapa perkiraan gaji saya jika saya baru lulus master degree dan hanya memiliki pengalaman internships
+- jika sekarang kamu menguasai Python/R, teknologi apa yang harus kamu kuasai pertama kali
+- cloud service apa yang high-demand dan/atau menjanjikan gaji lebih tinggi
