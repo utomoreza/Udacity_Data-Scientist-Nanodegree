@@ -19,7 +19,7 @@ from sqlalchemy import create_engine
 
 nltk.download(['stopwords', 'wordnet', 'punkt'])
 sys.path.append("..") # get access from parent dir
-from model.train_classifier import tokenize
+from models.train_classifier import tokenize
 
 # instantiate Flask
 app = Flask(__name__)
