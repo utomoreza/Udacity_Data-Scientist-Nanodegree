@@ -78,6 +78,7 @@ def save_data(df, database_filename):
     engine.dispose()
 
 def main():
+    """run the module"""
     # catch args inputted from CLI
     if len(sys.argv) == 4:
         messages_filepath, categories_filepath, database_filepath = sys.argv[1:]

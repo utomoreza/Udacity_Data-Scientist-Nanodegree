@@ -173,6 +173,7 @@ def save_model(model, model_filepath):
     joblib.dump(model, model_filepath)
 
 def main():
+    """run the module"""
     # catch args inputted from CLI
     if len(sys.argv) == 3:
         database_filepath, model_filepath = sys.argv[1:]
