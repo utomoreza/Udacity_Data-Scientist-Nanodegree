@@ -40,4 +40,4 @@ The main story of this repo can be found on my Medium Blog post available [here]
 Acknowledgment should go to Kaggle for providing the dataset. This repo is one of the Projects of [Data Scientist Nanodegree on Udacity](https://www.udacity.com/course/data-scientist-nanodegree--nd025).
 
 ## License
-MIT License
+[MIT License](../LICENSE)
