@@ -10,7 +10,7 @@ Below are a few screenshots of the web app.
 
 ## Requirements
 
-In order to run the project in your localhost, you are highly recommended to create a new virtual environment using either [`conda env`](https://conda.io/docs/user-guide/tasks/manage-environments.html) or [`python venv`](https://docs.python.org/3/tutorial/venv.html). Afterwards, install all dependencies packages using `pip -r install requirements.txt`.
+In order to run the project in your localhost, you are highly recommended to create a new virtual environment using either [`conda env`](https://conda.io/docs/user-guide/tasks/manage-environments.html) or [`python venv`](https://docs.python.org/3/tutorial/venv.html). Afterwards, install all dependencies packages using `pip install -r requirements.txt`.
 
 ## Instructions:
 1. Run the following commands in the project's root directory to set up the database and model.
