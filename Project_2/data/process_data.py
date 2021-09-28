@@ -1,3 +1,11 @@
+"""Copyright (c) 2021 Reza Dwi Utomo
+
+This module executes the following tasks:
+- load data from messages.csv and categories.csv
+- clean both data
+- save data to SQLite database
+"""
+
 import sys
 import re
 import pandas as pd
@@ -72,7 +80,6 @@ def save_data(df, database_filename):
 def main():
     # catch args inputted from CLI
     if len(sys.argv) == 4:
-
         messages_filepath, categories_filepath, database_filepath = sys.argv[1:]
 
         print('Loading data...\n    MESSAGES: {}\n    CATEGORIES: {}'

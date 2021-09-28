@@ -1,26 +1,38 @@
+"""Copyright (c) 2021 Reza Dwi Utomo
+
+This module executes the following tasks:
+- load data from SQLite database
+- split data into train and test sets
+- build a model using Pipeline and Grid Search
+- train the model using the train set
+- evaluate the model using the test set
+- save the model to a pickle file
+"""
+
 # import libraries
 import sys
 import re
-from unidecode import unidecode
 import pandas as pd
 import numpy as np
 
 from sqlalchemy import create_engine
+from unidecode import unidecode
 
 import nltk
-nltk.download(['stopwords', 'wordnet', 'punkt'])
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem.wordnet import WordNetLemmatizer
 
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
+# from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.ensemble import RandomForestClassifier #GradientBoostingClassifier
 from sklearn.multioutput import MultiOutputClassifier
-from sklearn.pipeline import Pipeline, FeatureUnion
+from sklearn.pipeline import Pipeline
 from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.externals import joblib
+
+nltk.download(['stopwords', 'wordnet', 'punkt'])
 
 def load_data(database_filepath):
     """used to load data from DB and return it as
@@ -65,7 +77,7 @@ def tokenize(text, lemmatizer=lemmatizer, stopwords=eng_stopwords):
     detected_urls = re.findall(regex_url, text)
     for url in detected_urls:
         text = text.replace(url, "urlplaceholder")
-    
+
     # remove any punct
     text = re.sub(regex_punct, ' ', text)
     text = re.sub(r"\s+", " ", text)
@@ -92,7 +104,7 @@ def build_model():
 
     # instantiate models
     random_forest = RandomForestClassifier(random_state=1)
-    xgboost = GradientBoostingClassifier(random_state=1)
+#     xgboost = GradientBoostingClassifier(random_state=1)
 
     # define pipeline
     pipeline = Pipeline([
