@@ -26,13 +26,19 @@ from nltk.stem.wordnet import WordNetLemmatizer
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 # from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.ensemble import RandomForestClassifier #GradientBoostingClassifier
+from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 from sklearn.multioutput import MultiOutputClassifier
 from sklearn.pipeline import Pipeline
 from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.externals import joblib
 
-nltk.download(['stopwords', 'wordnet', 'punkt'])
+# check if NLTK data already installed
+nltk_data = ['corpora/stopwords', 'corpora/wordnet', 'tokenizers/punkt']
+for datum in nltk_data:
+    try:
+        nltk.data.find(datum)
+    except LookupError:
+        nltk.download(datum.split('/')[-1])
 
 def load_data(database_filepath):
     """used to load data from DB and return it as
@@ -104,7 +110,7 @@ def build_model():
 
     # instantiate models
     random_forest = RandomForestClassifier(random_state=1)
-#     xgboost = GradientBoostingClassifier(random_state=1)
+    xgboost = GradientBoostingClassifier(random_state=1)
 
     # define pipeline
     pipeline = Pipeline([
@@ -117,17 +123,18 @@ def build_model():
     # BEAR IN MIND: the more params you specify,
     # the more computations you need to train the model
     parameters = {
-#         'count__ngram_range': ((1, 1), (1, 2)),
+        'count__ngram_range': ((1, 1), (1, 2)),
 #         'count__lowercase': (True, False),
 #         'count__max_df': (0.5, 1.0, 2.0),
-#         'count__max_features': (None, 5000, 10000),
-#         'classifier': (random_forest, xgboost),
+        'count__max_features': (None, 5000, 10000),
+#        'classifier': (MultiOutputClassifier(random_forest),
+#                       MultiOutputClassifier(xgboost)),
         'tfidf__use_idf': (True, False)
 #         'tfidf__smooth_idf': (True, False)
     }
 
     # define grid search
-    cv = GridSearchCV(pipeline, param_grid=parameters)
+    cv = GridSearchCV(pipeline, param_grid=parameters, n_jobs=-1, verbose=4)
 
     return cv
 
