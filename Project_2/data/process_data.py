@@ -48,6 +48,9 @@ def clean_data(df):
     df = pd.concat([df[['id', 'message', 'genre']], categories_expand], axis=1)
     df.drop_duplicates(subset='id', inplace=True)
 
+    # dispose any row with "related" col equal to 2
+    df = df[df.related != 2]
+
     return df
 
 def save_data(df, database_filename):
@@ -64,17 +67,10 @@ def save_data(df, database_filename):
     engine = create_engine(f'sqlite:///{database_filename}')
     connection = engine.raw_connection()
 
-    # get DB cursor so that we can execute SQL query
-    cursor = connection.cursor()
-    query = f"DROP TABLE IF EXISTS {table_name}"
-    cursor.execute(query)
-    connection.commit() # commit the change
-
     # save DF to DB
-    df.to_sql(table_name, engine, index=False)
+    df.to_sql(table_name, engine, index=False, if_exists='replace')
 
     # shut down DB engine
-    cursor.close()
     engine.dispose()
 
 def main():
