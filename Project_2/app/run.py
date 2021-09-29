@@ -17,7 +17,14 @@ from sklearn.externals import joblib
 
 from sqlalchemy import create_engine
 
-nltk.download(['stopwords', 'wordnet', 'punkt'])
+# check if NLTK data already installed
+nltk_data = ['corpora/stopwords', 'corpora/wordnet', 'tokenizers/punkt']
+for datum in nltk_data:
+    try:
+        nltk.data.find(datum)
+    except LookupError:
+        nltk.download(datum.split('/')[-1])
+
 sys.path.append("..") # get access from parent dir
 from models.train_classifier import tokenize
 
