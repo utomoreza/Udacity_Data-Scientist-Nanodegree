@@ -38,61 +38,72 @@ df = pd.read_sql_table('message_category', engine)
 # load model
 model = joblib.load("../models/classifier.pkl")
 
+# extract data needed for visuals
+# TODO: Below is an example - modify to extract data for your own visuals
+genre_counts = df.groupby('genre').count()['message']
+genre_names = list(genre_counts.index)
+
+# get label proportions of each category
+res = {}
+for label, content in df.iloc[:, 3:].iteritems():
+    res[label + '_1'] = df[content == 1].shape[0]
+    res[label + '_0'] = df[content == 0].shape[0]
+label_0 = [v for k, v in res.items() if '0' in k]
+label_1 = [v for k, v in res.items() if '1' in k]
+category = [k[:-2] for k in res.keys()]
+category = list(dict(zip(category, range(len(category)))).keys())
+category = [cat.replace('_', ' ').title() for cat in category]
+
+# sort it in descending order
+proportions = list(zip(label_0, label_1, category))
+proportions.sort(key=lambda x: x[0], reverse=True)
+
+# create visuals
+# TODO: Below is an example - modify to create your own visuals
+graphs = [
+    {
+        'data': [Bar(x=genre_names, y=genre_counts)],
+        'layout': {
+            'title': 'Distribution of Message Genres',
+            'yaxis': {
+                'title': "Count"
+            },
+            'xaxis': {
+                'title': "Genre"
+            }
+        }
+    },
+    {
+        'data': [Bar(name='label 0',
+                     x=[prop[2] for prop in proportions],
+                     y=[prop[0] for prop in proportions]),
+                 Bar(name='label 1',
+                     x=[prop[2] for prop in proportions],
+                     y=[prop[1] for prop in proportions])],
+        'layout': {
+            'title': 'Label Proportions of Each Category',
+            'yaxis': {
+                'title': "Count"
+            },
+            'xaxis': {
+                'title': "Category",
+                'tickangle': 30
+            }
+        }
+    }
+]
+
+# encode plotly graphs in JSON
+ids = ["graph-{}".format(i) for i, _ in enumerate(graphs)]
+graphJSON = json.dumps(graphs, cls=plotly.utils.PlotlyJSONEncoder)
+
 # index webpage displays cool visuals and receives user input text for model
 @app.route('/')
 @app.route('/index')
 def index():
     """used to render homepage"""
 
-    # extract data needed for visuals
-    # TODO: Below is an example - modify to extract data for your own visuals
-    genre_counts = df.groupby('genre').count()['message']
-    genre_names = list(genre_counts.index)
-
-    # get label proportions of each category
-    res = {}
-    for label, content in df.iloc[:, 3:].iteritems():
-        res[label + '_1'] = df[content == 1].shape[0]
-        res[label + '_0'] = df[content == 0].shape[0]
-    label_0 = [v for k, v in res.items() if '0' in k]
-    label_1 = [v for k, v in res.items() if '1' in k]
-    category = [k[:-2] for k in res.keys()]
-    category = list(dict(zip(category, range(len(category)))).keys())
-
-    # create visuals
-    # TODO: Below is an example - modify to create your own visuals
-    graphs = [
-        {
-            'data': [Bar(x=genre_names, y=genre_counts)],
-            'layout': {
-                'title': 'Distribution of Message Genres',
-                'yaxis': {
-                    'title': "Count"
-                },
-                'xaxis': {
-                    'title': "Genre"
-                }
-            }
-        },
-        {
-            'data': [Bar(name='label 0', x=category, y=label_0),
-                     Bar(name='label 1', x=category, y=label_1)],
-            'layout': {
-                'title': 'Label Proportions of Each Category',
-                'yaxis': {
-                    'title': "Count"
-                },
-                'xaxis': {
-                    'title': "Category"
-                }
-            }
-        }
-    ]
-
-    # encode plotly graphs in JSON
-    ids = ["graph-{}".format(i) for i, _ in enumerate(graphs)]
-    graphJSON = json.dumps(graphs, cls=plotly.utils.PlotlyJSONEncoder)
-
+    global idx, graphJSON
     # render web page with plotly graphs
     return render_template('master.html', ids=ids, graphJSON=graphJSON)
 
