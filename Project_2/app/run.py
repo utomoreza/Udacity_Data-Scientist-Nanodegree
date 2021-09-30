@@ -49,17 +49,21 @@ def index():
     genre_counts = df.groupby('genre').count()['message']
     genre_names = list(genre_counts.index)
 
+    # get label proportions of each category
+    res = {}
+    for label, content in df.iloc[:, 3:].iteritems():
+        res[label + '_1'] = df[content == 1].shape[0]
+        res[label + '_0'] = df[content == 0].shape[0]
+    label_0 = [v for k, v in res.items() if '0' in k]
+    label_1 = [v for k, v in res.items() if '1' in k]
+    category = [k[:-2] for k in res.keys()]
+    category = list(dict(zip(category, range(len(category)))).keys())
+
     # create visuals
     # TODO: Below is an example - modify to create your own visuals
     graphs = [
         {
-            'data': [
-                Bar(
-                    x=genre_names,
-                    y=genre_counts
-                )
-            ],
-
+            'data': [Bar(x=genre_names, y=genre_counts)],
             'layout': {
                 'title': 'Distribution of Message Genres',
                 'yaxis': {
@@ -67,6 +71,19 @@ def index():
                 },
                 'xaxis': {
                     'title': "Genre"
+                }
+            }
+        },
+        {
+            'data': [Bar(name='label 0', x=category, y=label_0),
+                     Bar(name='label 1', x=category, y=label_1)],
+            'layout': {
+                'title': 'Label Proportions of Each Category',
+                'yaxis': {
+                    'title': "Count"
+                },
+                'xaxis': {
+                    'title': "Category"
                 }
             }
         }
