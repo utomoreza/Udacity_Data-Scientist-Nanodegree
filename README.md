@@ -11,6 +11,10 @@ For this project, I explore data science survey by [Kaggle](https://www.kaggle.c
 In this project, you'll find a web app where you can input a new message and get classification results in several categories.<br>
 [Link to repo](./Project_2)
 
+## Capstone Project: Starbucks Challenge
+This is a capstone project. I used datasets provided by Starbucks. I implemented several models to predict how much money customers spent on Starbucks products.<br>
+[Link to repo](./Project_Capstone)
+
 ## Author
 You could find my LinkedIn profile [here](https://www.linkedin.com/in/utomorezadwi/).
 
