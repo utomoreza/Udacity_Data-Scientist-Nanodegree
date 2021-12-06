@@ -17,6 +17,8 @@ We will employ several machine learning algorithms. As this will be a regression
 
 I found this project challenging, mainly due to the structure of the data in the transcript dataset. My goal is to predict the amount will be spent by a customer. So, the decision-makers would know how customers behave in purchasing Starbucks products. Therefore, I need all rows with amount existing, i.e. the rows with event col equal to transaction. However, using only this subset of the dataset, in fact, the models I've implemented can't give good performance. Even, by checking the correlations among all columns, we are unable to capture any strong relationship between the amount and other columns.
 
+For more description, you can find it in my Medium article [here](https://utomorezadwi.medium.com/how-much-will-you-spend-on-starbucks-products-242dc22c335c).
+
 ## Requirements
 
 In order to run the project in your localhost, you are highly recommended to create a new virtual environment using either [`conda env`](https://conda.io/docs/user-guide/tasks/manage-environments.html) or [`python venv`](https://docs.python.org/3/tutorial/venv.html). Afterwards, install all dependencies packages listed below.
