@@ -37,6 +37,7 @@ In order to run the project in your localhost, you are highly recommended to cre
 - The [`data`](./data) directory contains datasets in CSV and JSON files. The raw datasets are in JSON files, whereas the CSV files are the preprocessed datasets.
 - The [`README.md`](./README.md) file is this readme.
 - The [`Starbucks_Capstone_notebook.ipynb`](./Starbucks_Capstone_notebook.ipynb) is the main notebook for the project analysis.
+- If you'd like to have my pretrained GridSearchCV-based Random Forest models, you could download them [here](https://odsafdsd-my.sharepoint.com/:f:/g/personal/k58_proindo_net/ErfIXIbOWu1AnFfTYM35HPIBgh9oi1Z9XjdLHKCpRn-8Gw?e=u9lVYh).
 
 ## Acknowledgements
 Acknowledgement should go to Starbucks for providing the dataset. This repo is a capstone project of [Data Scientist Nanodegree on Udacity](https://www.udacity.com/course/data-scientist-nanodegree--nd025).
